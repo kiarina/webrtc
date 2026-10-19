@@ -16,10 +16,13 @@
 #include <cstdint>
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "rtc_base/strings/string_builder.h"
 
 namespace webrtc {
+
+class AudioSender;
 
 static const int kAdmMaxDeviceNameSize = 128;
 static const int kAdmMaxFileNameSize = 512;
@@ -86,7 +89,12 @@ class AudioTransport {
                               int64_t* elapsed_time_ms,
                               int64_t* ntp_time_ms) = 0;
 
- protected:
+  virtual void UpdateAudioSenders(std::vector<AudioSender*> senders,
+                                  int send_sample_rate_hz,
+                                  size_t send_num_channels) {}
+
+  virtual void SetStereoChannelSwapping(bool enable) {}
+
   virtual ~AudioTransport() {}
 };
 

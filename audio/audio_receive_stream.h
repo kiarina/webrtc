@@ -140,7 +140,7 @@ class AudioReceiveStreamImpl final : public webrtc::AudioReceiveStreamInterface,
   const std::string& sync_group() const;
 
  private:
-  internal::AudioState* audio_state() const;
+  webrtc::AudioState* audio_state() const;
 
   const Environment env_;
   RTC_NO_UNIQUE_ADDRESS SequenceChecker worker_thread_checker_;
